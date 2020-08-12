@@ -5,6 +5,20 @@ class Searcher extends Component {
         searchText:'',
     }
 
+    handleChange=(e)=>{
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit=(e)=>{
+        e.preventDefault();
+        this.props.search(this.state.searchText)
+        this.setState({
+            [e.target.id]: ' '
+        })
+    }
+
     render() {
         return(
             <div className="barra">
@@ -12,11 +26,11 @@ class Searcher extends Component {
                     <img src={logoMarvel} className="logo" alt=""/>
                 </div>
                 
-                <div className="barra-contenedor">
+                <form className="barra-contenedor" onSubmit={this.handleSubmit}>
                     <i className="material-icons icono-Busqueda">search</i>
-                    <input type="search" className="busqueda" placeholder="buscar"/>
+                    <input type="search" className="busqueda" id="searchText" placeholder="buscar" onChange={this.handleChange}/>
                     <i className="material-icons icono-Busqueda">star_border</i>
-                </div>
+                </form>
                 
             </div>
             

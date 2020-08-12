@@ -14,10 +14,14 @@ class App extends Component {
     ]
   }
 
+  search=(text)=>{
+    console.log(text)
+  }
+
   render(){
     return (
       <div className="App">
-        <Searcher />
+        <Searcher search={this.search}/>
         <SuperHeroList heroes={this.state.heroes}/>
       </div>
     );
