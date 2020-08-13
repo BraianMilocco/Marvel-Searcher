@@ -10,7 +10,7 @@ const ModalComic=({comic})=>{
             <div className="comicData">
                 <p className="title-comic">{comic.title}</p>
                 <div className="description-comic">
-                    <p className="truncar">{comic.description}</p>
+                    <p className="truncar">{ comic.description.substring(0, 150) + "..."}</p>
                 </div>
                 
             </div>
