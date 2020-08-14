@@ -14,12 +14,12 @@ class Searcher extends Component {
     }
 
     handleSubmit=(e)=>{
+        console.log('y esto')
         e.preventDefault();
 
         axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith='+this.state.searchText+'&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
             res=>{this.props.search(res.data.data.results)  
         })
-      
     }
 
     render() {

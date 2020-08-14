@@ -6,8 +6,6 @@ import ModalSH from '../modal/ModalSH'
 class SuperHeroList extends Component{
      state={
         showPopup: false,
-
-
     }
 
     closePopup= ()=> {
@@ -16,30 +14,29 @@ class SuperHeroList extends Component{
         });
       }
 
-    list= this.props.heroes? (this.props.heroes.map(
-        hero=>{
-            return(
-                <div className="container" key={hero.id}>
-                    <p>{hero.id}</p>
-{/*                     <HeroCard hero={hero} openPopup={this.closePopup} />
- */}                </div>
-            )
-        }
-    )):( <div> No hay SuperHeroes</div> )
+    list= ()=>{
+        console.log('prueba')
+        const list= this.props.heroes.length? (this.props.heroes.map(
+            hero=>{
+                return(
+                    <div className="container" key={hero.id}>
+                        <HeroCard hero={hero} openPopup={this.closePopup} />
+                    </div>
+                )
+            }
+        )):( <div className="texto-ayuda"> No hay SuperHeroes</div> )
+
+        return list
+    }
+
+    
 
     render(){
-       console.log(this.props.heroes)
+       console.log('se ejecuta dos veces?')
         return(
             <div className="cuerpo">
-                {this.props.heroes? (this.props.heroes.map(
-        hero=>{
-            return(
-                <div className="container" key={hero.id}>                    
-                     <HeroCard hero={hero} openPopup={this.closePopup} />
-                 </div>
-            )
-        }
-    )):( <div> No hay SuperHeroes</div> )}
+                {this.props.sebusco?
+                this.list(): <div className="texto-ayuda">Search your superhero by name ex Spider-Man or by comic(function in process)</div> }
                 {this.state.showPopup ? 
                     <ModalSH closePopup={this.closePopup}/>
                     : null

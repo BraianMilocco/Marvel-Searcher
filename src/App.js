@@ -5,32 +5,29 @@ import './App.css';
 
 class App extends Component {
   state={
-    heroes:undefined
-  }
-
-  mapearHeroes=(heroes)=>{
-    var lista=[]
-
-    heroes.map(heroe=>{
-      lista.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
-    })
-
-    return lista
+    heroes:[],
+    seBusco: false
   }
 
   search=(text)=>{
-    const lista= this.mapearHeroes(text)
-    this.setState({
-      heroes: lista
+    var lista=[]
+
+    text.forEach(heroe=>{
+      lista.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
     })
-    console.log(this.state.heroes)
+    
+    this.setState({
+      heroes: lista,
+      seBusco: true
+    })
+    console.log('la app se ejectua')
   }
 
   render(){
     return (
       <div className="App">
         <Searcher search={this.search}/>
-        <SuperHeroList heroes={this.state.heroes}/>
+        <SuperHeroList heroes={this.state.heroes} sebusco={this.state.seBusco}/>
       </div>
     );
     }

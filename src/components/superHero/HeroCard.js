@@ -7,7 +7,7 @@ class HeroCard extends Component{
     
 
     render(){
-        console.log( this.props.hero.id + this.props)
+        console.log('esto tambien se ejecuta dos veces?')
         return(
             <div className="tarjeta" onClick={this.props.openPopup} >
                 <div className="radio"></div>
