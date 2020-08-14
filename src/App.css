@@ -111,6 +111,23 @@
   grid-column-end: 3;
 }
 
+@media screen and (max-width: 572px){
+  .texto-ayuda{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+@media screen and (max-width: 869px){
+  .texto-ayuda{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
 .container{
     padding-top: 5px;
     margin-top:10px;
