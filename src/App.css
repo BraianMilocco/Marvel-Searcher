@@ -129,7 +129,8 @@
 
 .imagen-heroe{
   position: absolute;
-  width: 100%;
+  width: 256px;
+  height: 380px;
   object-fit: cover;
 }
 
@@ -195,6 +196,7 @@
   padding: 1%;
 }
 
+
 @media screen and (max-width: 450px){
   .modal-box{
     
@@ -208,6 +210,8 @@
   }
 }
 
+
+
 h3{
   margin-top: 25px;
   margin-bottom: 5px;
@@ -215,12 +219,12 @@ h3{
 .modal-title{
   color: gray;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 16px;
+  font-size: 15px;
   width: 95%;
   height: 20%;
   vertical-align: bottom;
-/*   background-color: blueviolet;
- */  margin: 0% auto 2%;
+/*   background-color: blueviolet; */
+   margin: 0% auto 2%;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -230,7 +234,7 @@ h3{
   flex-wrap: wrap;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 70%;
+  height: 75%;
   width: 100%;
   padding: 0 0;
 }
@@ -244,6 +248,26 @@ h3{
 .modal-close:hover{ 
   color: rgb(71, 71, 71);
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) and (orientation: landscape){
+  .modal-title{
+    color: gray;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    width: 95%;
+    height: 25%;
+    vertical-align: bottom;
+  /*   background-color: blueviolet;
+   */  margin: 0% auto 2%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .modal-box{
+    top: 35%;
+    height: 80%;
+
+  }
 }
 
 /* Cada comic dentro del modal */

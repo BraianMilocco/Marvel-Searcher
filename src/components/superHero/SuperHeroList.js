@@ -7,6 +7,7 @@ class SuperHeroList extends Component{
      state={
         showPopup: false,
 
+
     }
 
     closePopup= ()=> {
@@ -19,22 +20,32 @@ class SuperHeroList extends Component{
         hero=>{
             return(
                 <div className="container" key={hero.id}>
-                    <HeroCard hero={hero} openPopup={this.closePopup} />
-                </div>
+                    <p>{hero.id}</p>
+{/*                     <HeroCard hero={hero} openPopup={this.closePopup} />
+ */}                </div>
             )
         }
-    )
-    ):( <div> No hay SuperHeroes</div> )
+    )):( <div> No hay SuperHeroes</div> )
 
     render(){
+       console.log(this.props.heroes)
         return(
             <div className="cuerpo">
-                {this.list}
+                {this.props.heroes? (this.props.heroes.map(
+        hero=>{
+            return(
+                <div className="container" key={hero.id}>                    
+                     <HeroCard hero={hero} openPopup={this.closePopup} />
+                 </div>
+            )
+        }
+    )):( <div> No hay SuperHeroes</div> )}
                 {this.state.showPopup ? 
                     <ModalSH closePopup={this.closePopup}/>
                     : null
                 }
             </div>
+           
         )
     }
 }

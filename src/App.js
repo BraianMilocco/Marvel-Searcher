@@ -5,17 +5,25 @@ import './App.css';
 
 class App extends Component {
   state={
-    heroes:[
-      {id:'1',name: 'Iron-Man', image:'https://sm.ign.com/ign_latam/screenshot/default/1_3fnq.jpg'},
-      {id:'2',name: 'Spider-Man', image:'https://cdn.normacomics.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/p/spiderman_saga_6.jpg'},
-      {id:'3',name: 'Fantastic Four', image:'https://www.milcomics.com/fotos/13102019212646650763.jpg'},
-      {id:'4',name: 'Avengers', image:'https://i.pinimg.com/originals/c5/08/ae/c508aefed57392ab7482143e7bb21696.jpg'},
-      {id:'5',name: 'Hulk', image:'https://i.annihil.us/u/prod/marvel/i/mg/8/04/5ced997c7ccd9/clean.jpg'},
-    ]
+    heroes:undefined
+  }
+
+  mapearHeroes=(heroes)=>{
+    var lista=[]
+
+    heroes.map(heroe=>{
+      lista.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
+    })
+
+    return lista
   }
 
   search=(text)=>{
-    console.log(text)
+    const lista= this.mapearHeroes(text)
+    this.setState({
+      heroes: lista
+    })
+    console.log(this.state.heroes)
   }
 
   render(){
