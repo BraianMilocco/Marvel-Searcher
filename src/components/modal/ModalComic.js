@@ -2,9 +2,6 @@ import React from 'react'
 import errorCarga from '../../img/errorCarga.jpg'
 
 const ModalComic=({comic})=>{
-
-    
-    console.log(comic)
     return(
         <div className="comic-box">
             {

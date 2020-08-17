@@ -12,7 +12,6 @@ const rootReducer=(state = initState, action)=>{
                 heroes: action.heroes
             }
         case 'ADD_COMICS':
-            console.log(action.comics)
             return {
                 ...state,
                 comics: action.comics
