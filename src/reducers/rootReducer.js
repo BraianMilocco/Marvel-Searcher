@@ -1,6 +1,6 @@
 const initState={
     heroes: [],
-    comics: false,
+    comics: [],
 }
 
 const rootReducer=(state = initState, action)=>{
