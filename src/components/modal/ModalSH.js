@@ -10,7 +10,7 @@ class ModalSH  extends Component{
 
 
     render(){
-        console.log(this.props.comics.comics)
+        console.log(this.props.comics)
         return(
             <div className="modal">
                 <div className="modal-box">
