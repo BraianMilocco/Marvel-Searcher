@@ -19,7 +19,7 @@ class HeroCard extends Component{
     }
 
     handleclick2=()=>{
-        axios.get('http://gateway.marvel.com/v1/public/characters/'+this.props.hero.id+'/comics?ts=1&orderBy=title&limit=5&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
+        axios.get('https://gateway.marvel.com/v1/public/characters/'+this.props.hero.id+'/comics?ts=1&orderBy=title&limit=5&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
             res =>{
                 
                 
