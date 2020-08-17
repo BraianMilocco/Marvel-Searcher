@@ -154,6 +154,10 @@
   left: 85%;
 }
 
+.estrellita:hover{
+  cursor: pointer;
+}
+
 .imagen-heroe{
   position: absolute;
   width: 256px;

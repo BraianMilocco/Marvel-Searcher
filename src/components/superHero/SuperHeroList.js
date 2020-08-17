@@ -2,6 +2,7 @@ import React from 'react'
 import HeroCard from './HeroCard'
 import { Component } from 'react'
 import ModalSH from '../modal/ModalSH'
+import { connect } from 'react-redux'
 
 class SuperHeroList extends Component{
      state={
@@ -15,7 +16,6 @@ class SuperHeroList extends Component{
       }
 
     list= ()=>{
-        console.log('prueba')
         const list= this.props.heroes.length? (this.props.heroes.map(
             hero=>{
                 return(
@@ -32,7 +32,7 @@ class SuperHeroList extends Component{
     
 
     render(){
-       console.log('se ejecuta dos veces?')
+       
         return(
             <div className="cuerpo">
                 {this.props.sebusco?
@@ -47,4 +47,10 @@ class SuperHeroList extends Component{
     }
 }
 
-export default SuperHeroList;
+const mapStateToProps = (state) => {
+    return {
+      heroes: state.heroes
+    }
+  }
+
+export default connect(mapStateToProps)(SuperHeroList);

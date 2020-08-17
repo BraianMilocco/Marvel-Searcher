@@ -9,25 +9,18 @@ class App extends Component {
     seBusco: false
   }
 
-  search=(text)=>{
-    var lista=[]
-
-    text.forEach(heroe=>{
-      lista.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
-    })
-    
+  search=()=>{
     this.setState({
-      heroes: lista,
       seBusco: true
     })
-    console.log('la app se ejectua')
+    
   }
 
   render(){
     return (
       <div className="App">
         <Searcher search={this.search}/>
-        <SuperHeroList heroes={this.state.heroes} sebusco={this.state.seBusco}/>
+        <SuperHeroList  sebusco={this.state.seBusco}/>
       </div>
     );
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logoMarvel from '../../img/logoMarvel.png'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { addHeroes } from '../../reducers/actions/rootActions'
 
 class Searcher extends Component { 
     state={
@@ -14,12 +16,19 @@ class Searcher extends Component {
     }
 
     handleSubmit=(e)=>{
-        console.log('y esto')
         e.preventDefault();
-
+        this.props.search();
         axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith='+this.state.searchText+'&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
-            res=>{this.props.search(res.data.data.results)  
-        })
+            res=>{ 
+                
+                const result= res.data.data.results
+                var heroes=[]
+
+                result.forEach(heroe=>{
+                    heroes.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
+                })  
+                this.props.addHeores(heroes) 
+            })
     }
 
     render() {
@@ -41,4 +50,10 @@ class Searcher extends Component {
     }
 }
 
-export default Searcher;
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addHeores: (heroes) => dispatch(addHeroes(heroes))
+    }
+}
+
+export default  connect(null, mapDispatchToProps)(Searcher);
