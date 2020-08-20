@@ -45,12 +45,12 @@ class HeroCard extends Component{
 
     }
     isFavorite = ()=> {
-        let favoritesRaw= localStorage.getItem('favorites')
+        /* let favoritesRaw= localStorage.getItem('favorites')
         let favorites= JSON.parse(favoritesRaw)
         
-        let aux= (favorites.lenght >0)? favorites.find(element => element.id === this.props.hero.id) : 0
+        let aux= favorites? favorites.find(element => element.id === this.props.hero.id) : 0 */
 
-        return Boolean(aux)
+        return false
         
     }
 
