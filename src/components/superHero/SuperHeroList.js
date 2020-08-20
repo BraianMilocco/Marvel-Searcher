@@ -35,7 +35,7 @@ class SuperHeroList extends Component{
        
         return(
             <div className="cuerpo">
-                {this.props.sebusco?
+                {this.props.seBusco?
                 this.list(): <div className="texto-ayuda">Search your superhero by name ex Spider-Man or by comic(function in process)</div> }
                 {this.state.showPopup ? 
                     <ModalSH closePopup={this.closePopup}/>
@@ -49,7 +49,8 @@ class SuperHeroList extends Component{
 
 const mapStateToProps = (state) => {
     return {
-      heroes: state.heroes
+      heroes: state.heroes, 
+      seBusco: state.seBusco
     }
   }
 

@@ -5,20 +5,56 @@ import {connect } from 'react-redux'
 import {addComics} from '../../reducers/actions/rootActions'
 import axios from 'axios'
 
+
+
+
 class HeroCard extends Component{
     state={
         fav: false
     }
 
-    handleClick=()=>{
-        const favorite= !this.state.fav
+    makeFav=()=>{
+        
         this.setState({
-            fav: favorite
+            fav: true
         })
         console.log(this.state.fav)
+        let favoritesRaw= localStorage.getItem('favorites')
+        let favorites= JSON.parse(favoritesRaw)
+        let arrayFav= favorites? [... favorites, this.props.hero] : [this.props.hero]
+
+        localStorage.setItem('favorites', JSON.stringify(arrayFav));
+
+
     }
 
-    handleclick2=()=>{
+    quitFav=()=>{
+        
+        this.setState({
+            fav: false
+        })
+        console.log(this.state.fav)
+
+        let favoritesRaw= localStorage.getItem('favorites')
+        let favorites= JSON.parse(favoritesRaw)
+        let arrayFav= favorites.filter(hero =>{
+            return hero.name !== this.props.hero.name
+        })
+
+        localStorage.setItem('favorites', JSON.stringify(arrayFav));
+
+    }
+    isFavorite = ()=> {
+        let favoritesRaw= localStorage.getItem('favorites')
+        let favorites= JSON.parse(favoritesRaw)
+        
+        let aux= favorites.find(element => element.id === this.props.hero.id)
+
+        return Boolean(aux)
+        
+    }
+
+    handleclick2= ()=>{
         axios.get('https://gateway.marvel.com/v1/public/characters/'+this.props.hero.id+'/comics?ts=1&orderBy=title&limit=5&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
             res =>{
                 
@@ -37,6 +73,7 @@ class HeroCard extends Component{
                 
             }
         )
+
         this.props.openPopup()
         /* this.props.addComics(this.props.hero.id);
         this.props.openPopup(); */
@@ -44,7 +81,6 @@ class HeroCard extends Component{
     }
 
     render(){
-        console.log('esto tambien se ejecuta dos veces?')
         return(
             <div className="tarjeta"  >
                 <div className="radio"onClick={this.handleclick2}></div>
@@ -54,9 +90,9 @@ class HeroCard extends Component{
                     <img className="imagen-heroe" src={errorCarga} alt=""/> :
                     <img className="imagen-heroe" src={this.props.hero.image} alt="spider"/> 
                 }
-                {this.state.fav?
-                <i onClick={this.handleClick} className="material-icons estrellita">star</i> : 
-                <i onClick={this.handleClick} className="material-icons estrellita">star_border</i>
+                {this.isFavorite()?
+                <i onClick={this.quitFav} className="material-icons estrellita">star</i> : 
+                <i onClick={this.makeFav} className="material-icons estrellita">star_border</i>
                 }
 
             
@@ -70,7 +106,7 @@ class HeroCard extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addComics: (comics) => dispatch(addComics(comics))
+      addComics: (heroID) => dispatch(addComics(heroID))
     }
 }
 

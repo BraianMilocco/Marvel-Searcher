@@ -7,11 +7,24 @@ export const addHeroes=(heroes)=>{
     }
 }
 
-export const addComics=(comics)=>{
 
-    return{
+export const addComics= (heroObject)=>{
+    return {
         type:'ADD_COMICS',
-        comics: comics
+        comics: heroObject
     }
-    
 }
+
+export const seBusco=()=>{
+    return {
+        type:'SE_BUSCO',
+        seBusco: true
+    }
+}
+
+/* export const favHero=(heroID)=>{
+    return{
+        type:'FavHero',
+        heroID: heroID
+    }
+} */

@@ -5,8 +5,7 @@ import './App.css';
 
 class App extends Component {
   state={
-    heroes:[],
-    seBusco: false
+    seBusco: true
   }
 
   search=()=>{
@@ -17,10 +16,11 @@ class App extends Component {
   }
 
   render(){
+    
     return (
       <div className="App">
         <Searcher search={this.search}/>
-        <SuperHeroList  sebusco={this.state.seBusco}/>
+        <SuperHeroList />
       </div>
     );
     }

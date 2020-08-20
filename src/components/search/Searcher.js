@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logoMarvel from '../../img/logoMarvel.png'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { addHeroes } from '../../reducers/actions/rootActions'
+import { addHeroes, seBusco } from '../../reducers/actions/rootActions'
 
 class Searcher extends Component { 
     state={
@@ -17,6 +17,7 @@ class Searcher extends Component {
 
     handleSubmit=(e)=>{
         e.preventDefault();
+        this.props.seBusco();
         this.props.search();
         axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith='+this.state.searchText+'&apikey=3ad7e86fe85e634a0b52f4809e05d2e8&hash=f7c4ff643c9818fd249b11811d6f2279').then(
             res=>{ 
@@ -25,7 +26,7 @@ class Searcher extends Component {
                 var heroes=[]
 
                 result.forEach(heroe=>{
-                    heroes.push({id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
+                    heroes.push({ id: heroe.id, name: heroe.name, image:(heroe.thumbnail.path +'.'+ heroe.thumbnail.extension)})
                 })  
                 this.props.addHeores(heroes) 
             })
@@ -52,7 +53,8 @@ class Searcher extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addHeores: (heroes) => dispatch(addHeroes(heroes))
+      addHeores: (heroes) => dispatch(addHeroes(heroes)),
+      seBusco: ()=> dispatch(seBusco())
     }
 }
 

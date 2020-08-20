@@ -1,7 +1,19 @@
+
+const pepe= localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites'))
+: 
+(()=>{localStorage.setItem('favorites', JSON.stringify([])); return[]})
+
+
+const seBusco= (localStorage.getItem('favorites')) ? (
+    (JSON.parse(localStorage.getItem('favorites')).length > 0) ? true : false
+) : false
+
 const initState={
-    heroes: [],
+    seBusco: seBusco,
+    heroes: pepe,
     comics: [],
 }
+console.log(initState)
 
 const rootReducer=(state = initState, action)=>{
 
@@ -15,6 +27,11 @@ const rootReducer=(state = initState, action)=>{
             return {
                 ...state,
                 comics: action.comics
+            }
+        case 'SE_BUSCO' :
+            return{
+                ...state,
+                seBusco: action.seBusco
             }
         default: return state
     }
